@@ -2,43 +2,36 @@
 
 import sys
 
-def to_dictionary():
-	list_of_tuples = [
-		('Russia', '25'),
-		('France', '132'),
-		('Germany', '132'),
-		('Spain', '178'),
-		('Italy', '162'),
-		('Portugal', '17'),
-		('Finland', '3'),
-		('Hungary', '2'),
-		('The Netherlands', '28'),
-		('The USA', '610'),
-		('The United Kingdom', '95'),
-		('China', '83'),
-		('Iran', '76'),
-		('Turkey', '65'),
-		('Belgium', '34'),
-		('Canada', '28'),
-		('Switzerland', '26'),
-		('Brazil', '25'),
-		('Austria', '14'),
-		('Israel', '12')
-	]
-	if len(sys.argv) == 1:
-		contries = {}
-		for a, b in list_of_tuples:
-			if b in contries:
-				contries[b].append(a)
-			else:
-				contries[b] = []
-				contries[b].append(a)
-	for a in list_of_tuples:
-		for key, value in contries.items():
-			for i in value:
-				if i == a[0]:
-					print("'" + key + "' : '" + i + "'")
+def all_stocks():
+	COMPANIES = {
+		'Apple': 'AAPL',
+		'Microsoft': 'MSFT',
+		'Netflix': 'NFLX',
+		'Tesla': 'TSLA',
+		'Nokia': 'NOK'
+	}
+	STOCKS = {
+		'AAPL': 287.73,
+		'MSFT': 173.79,
+		'NFLX': 416.90,
+		'TSLA': 724.88,
+		'NOK': 3.37
+	}
+	# print(len(sys.argv))
 
+	if len(sys.argv) == 2:
+		a = sys.argv[1].replace(" ", "").split(',')
+		for var in a:
+			var1 = var.capitalize()
+			if var1 in COMPANIES:
+				print(var1 + "stock price is " + str(STOCKS[COMPANIES[var1]]))
+			elif var.upper() in COMPANIES.values():
+				var1 = var.upper()
+				for key, value in COMPANIES.items():
+					if value == var1:
+						print(var1 + " is a ticker symbol for " + key)
+			else:
+				print(var + " is an unknown company or an unknown ticker symbol")
 
 if __name__ == '__main__':
-	to_dictionary()
+	all_stocks()
