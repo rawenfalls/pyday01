@@ -27,20 +27,15 @@ def dict_sorter():
 	]
 	if len(sys.argv) == 1:
 		contries = {}
-		number = []
 		for a, b in list_of_tuples:
-			contries[int(b)] = []
+			if not int(b) in contries:
+				contries[int(b)] = []
 			contries[int(b)].append(a)
-			number.append(b)
 		sort = list(reversed(sorted(contries)))
-
-		print(sort)
-	# for a in sort:
-	# 	for key, value in contries.items():
-	# 		for i in value:
-	# 			if i == a[0]:
-	# 				print("'" + str(key) + "' : '" + i + "'")
-
+		for a in sort:
+			sort_contries = sorted(contries[a])
+			for b in sort_contries:
+				print(b)
 
 if __name__ == '__main__':
 	dict_sorter()
